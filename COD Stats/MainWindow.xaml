@@ -1,0 +1,326 @@
+﻿<Controls:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:WWII_Stats" x:Class="WWII_Stats.MainWindow"
+        mc:Ignorable="d"
+        Title="CoD: WWII Utility (BETA)" Icon="/Resources/Icons/wwii-logo.png" ShowIconOnTitleBar="False"  Height="640" Width="888" BorderThickness="0" GlowBrush="Black" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <!-- Search Box -->
+
+        <TextBox x:Name="textBoxGametag" Height="23" Margin="14,14,14,383" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Stretch" Controls:TextBoxHelper.Watermark="Enter a Online ID..." Controls:TextBoxHelper.ClearTextButton="True" KeyDown="textBoxGametag_OnKeyDown"/>
+        <Label Content="Waiting for user..." FontSize="11px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,44,10,0" Width="Auto" x:Name="labelStatus"/>
+
+        <!-- Platforms -->
+
+        <RadioButton x:Name="radioPSN" Content="PSN" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,171,0" IsChecked="True" Checked="platform_Changed" Unchecked="platform_Changed"/>
+        <RadioButton x:Name="radioXboxLive" Content="Xbox Live" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,82,0" Checked="platform_Changed" Unchecked="platform_Changed"/>
+        <RadioButton x:Name="radioSteam" Content="Steam" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,14,0" Checked="platform_Changed" Unchecked="platform_Changed"/>
+
+        <!-- Logo, Title, Username Header -->
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="14,80,10,0" DockPanel.Dock="Top">
+            <Image Height="74" Width="74" x:Name="imageCurrentLvelIcon1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image.Source>
+                    <BitmapImage DecodePixelWidth="74" UriSource="/Resources/Icons/wwii-logo.png"/>
+                </Image.Source>
+            </Image>
+            <Grid Margin="78,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label Content="CALL OF DUTY: WORLD WAR II" FontSize="18px" FontWeight="Normal" FontStyle="Italic" Margin="2" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="USERNAME" FontSize="42px" FontWeight="Bold" Width="Auto" Height="Auto" x:Name="labelUsername" Margin="0,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Grid>
+        </Grid>
+
+        <!-- Lifetime/Splitter Stats Header -->
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="10,160,0,0" Width="865" Orientation="Horizontal">
+            <Label Margin="0,0,0,0" Content="LIFETIME STATS" FontWeight="Bold" FontSize="20px" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="Auto" VerticalContentAlignment="Top"/>
+            <Separator Margin="4,0,0,6" Width="1000" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="6" VerticalContentAlignment="Bottom" VerticalAlignment="Bottom"/>
+        </StackPanel>
+
+        <!-- First Column -->
+
+        <Grid HorizontalAlignment="Left" Width="205" Height="Auto" VerticalAlignment="Top" Margin="10,198,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="WIN STREAK" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsWinStreak"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="10,220,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Wins" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsWins"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="10,240,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Losses" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsLosses"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="10,260,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Current Win Streak" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsCurrentWinStreak"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="10,280,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Matches Completed" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsMatchesCompleted"/>
+            </StackPanel>
+        </Grid>
+
+
+        <!-- Second Column -->
+
+        <Grid HorizontalAlignment="Left" Width="205" Height="Auto" VerticalAlignment="Top" Margin="232,198,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="K/D RATIO" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsKDRatio"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="232,220,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Kills" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsKills"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="232,240,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Deaths" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsDeaths"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="232,260,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Headshots" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsHeadshots"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="232,280,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Suicides" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsSuicides"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Third Column -->
+
+        <Grid HorizontalAlignment="Left" Width="205" Height="Auto" VerticalAlignment="Top" Margin="452,198,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="XP" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsXP"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="452,220,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Score" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsScore"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="452,240,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Killstreak" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsKillstreak"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="452,260,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Best Kills" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsBestKills"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="452,280,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Accuracy" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsAccuracy"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Fourth Column -->
+
+        <Grid HorizontalAlignment="Left" Width="205" Height="Auto" VerticalAlignment="Top" Margin="672,198,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="UNLOCK POINTS" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="16px" FontWeight="Bold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsUnlockPoins"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="672,220,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Money" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsMoney"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="672,240,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Prestige Tokens" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsPrestigeTokens"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="672,260,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Points" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsPoints"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Width="204" Height="Auto" VerticalAlignment="Top" Margin="672,280,10,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Time Played" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="12px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsTimePlayed"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Wins/Loss Values Text -->
+
+        <Grid HorizontalAlignment="Left" Width="854" Height="Auto" VerticalAlignment="Top" Margin="17,316,0,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="- WINS" FontSize="14px" FontWeight="DemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsWins1"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="- LOSSES" FontSize="14px" FontWeight="DemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsLosses1"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Win/Loss Progress Bar -->
+
+        <Controls:MetroProgressBar Background="DarkGray" x:Name="progressWinLoss" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="858" Margin="15,346,0,0" Value="0"/>
+
+        <!-- Win/Loss Percentage Text -->
+
+        <Grid HorizontalAlignment="Left" Width="854" Height="Auto" VerticalAlignment="Top" Margin="17,342,0,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="-" FontSize="16px" FontWeight="SemiBold" Foreground="Black" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsWinsPercentage"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="-" FontSize="16px" FontWeight="SemiBold" Foreground="Black" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsLossesPercentage"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Separator (Finish Lifetime Stats) -->
+
+        <Separator Margin="16,386,0,6" Width="858" Height="6" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <!-- Current/Next Level Icon -->
+
+        <Grid HorizontalAlignment="Left" Width="400" Height="Auto" VerticalAlignment="Top" Margin="10,328,0,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Height="340" Width="70" x:Name="imageCurrentLevelIcon">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="70" UriSource="/Resources/Level/33.jpg"/>
+                    </Image.Source>
+                </Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image Height="340" Width="70" x:Name="imageNextLevelIcon">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="70" UriSource="/Resources/Level/33.jpg"/>
+                    </Image.Source>
+                </Image>
+            </StackPanel>
+        </Grid>
+
+        <!-- Current/Next Level Text -->
+
+        <Grid HorizontalAlignment="Left" Width="408" Height="Auto" VerticalAlignment="Top" Margin="10,488,0,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Level -" FontSize="18px" FontWeight="Bold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="32" VerticalContentAlignment="Center" x:Name="statsCurrentLevel"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="Level -" FontSize="18px" FontWeight="Bold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="32" VerticalContentAlignment="Center" x:Name="statsNextLevel"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Current Level Icon (Big) -->
+
+        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="119,412,0,0" Height="470" Width="190" x:Name="imageCurrentLevelIcon1">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="190" UriSource="/Resources/Level/33.jpg"/>
+            </Image.Source>
+        </Image>
+
+        <!-- Level Progress Bar -->
+
+        <Controls:MetroProgressBar Background="DarkGray" x:Name="progressLevelXP" HorizontalAlignment="Left" Height="12" VerticalAlignment="Top" Width="398" Margin="15,520,0,0" Value="0"/>
+
+        <!-- Current/Needed XP -->
+
+        <Grid HorizontalAlignment="Left" Width="408" Height="Auto" VerticalAlignment="Top" Margin="10,528,0,0" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Current XP:" FontSize="11px" FontWeight="SemiBold" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsLevelXPCurrent"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="XP Needed:" FontSize="11px" FontWeight="SemiBold" HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" Width="Auto" Height="28" VerticalContentAlignment="Center" x:Name="statsLevelXPNeeded"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Vertical Seperator -->
+
+        <StackPanel HorizontalAlignment="Left" Height="200" Margin="416,410,0,0" VerticalAlignment="Top" Width="Auto">
+            <Separator Margin="7,0,0,0" Width="1000" HorizontalAlignment="Left" Height="6" VerticalContentAlignment="Stretch" VerticalAlignment="Bottom">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+        </StackPanel>
+
+    </Grid>
+</Controls:MetroWindow>
