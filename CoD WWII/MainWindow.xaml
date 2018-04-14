@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:local="clr-namespace:WWII_Stats" x:Class="WWII_Stats.MainWindow"
+        xmlns:local="clr-namespace:WWII_Stats" x:Class="CoD_WWII.MainWindow"
         mc:Ignorable="d"
         Title="CoD: WWII Utility (BETA)" Icon="/Resources/Icons/wwii-logo.png" ShowIconOnTitleBar="False"  Height="640" Width="888" BorderThickness="0" GlowBrush="Black" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>

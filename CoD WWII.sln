@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COD Stats", "COD Stats\COD Stats.csproj", "{361FBE59-5C05-4682-A918-AF48FE7B205D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoD WWII", "CoD WWII\CoD WWII.csproj", "{361FBE59-5C05-4682-A918-AF48FE7B205D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COD", "..\..\..\- Plugins\cod-csharp-master\COD\COD.csproj", "{A3DDC398-3C4E-46B4-B4E4-ACA1124E8F8E}"
 EndProject

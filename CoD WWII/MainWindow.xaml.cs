@@ -16,7 +16,7 @@ using COD;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace WWII_Stats
+namespace CoD_WWII
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

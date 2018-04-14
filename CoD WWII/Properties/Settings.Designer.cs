@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WWII_Stats.Properties {
+namespace CoD_WWII.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
