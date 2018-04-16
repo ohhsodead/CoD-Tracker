@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WWII_Stats
+namespace CoD_WWII
 {
     /// <summary>
     /// Interaction logic for App.xaml

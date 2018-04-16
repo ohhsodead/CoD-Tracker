@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>WWII_Stats.App</StartupObject>
+    <StartupObject>CoD_WWII.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>wwii_logo.ico</ApplicationIcon>

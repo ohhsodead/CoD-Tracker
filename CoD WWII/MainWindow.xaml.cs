@@ -73,8 +73,8 @@ namespace CoD_WWII
                     statsLosses1.Content = GetFormattedNumber(Convert.ToString(stats.mp.lifetime.all.losses)) + " LOSSES";
                     progressWinLoss.Maximum = gamesWonLoss;
                     progressWinLoss.Value = stats.mp.lifetime.all.wins;
-                    statsWinsPercentage.Content = (int)Math.Round((double)(100 * stats.mp.lifetime.all.wins) / gamesWonLoss) + "%";
-                    statsLossesPercentage.Content = (int)Math.Round((double)(100 * stats.mp.lifetime.all.losses) / gamesWonLoss) + "%";
+                    statsWinsPercentage.Content = (int)Math.Round((100 * stats.mp.lifetime.all.wins) / gamesWonLoss) + "%";
+                    statsLossesPercentage.Content = (int)Math.Round((100 * stats.mp.lifetime.all.losses) / gamesWonLoss) + "%";
 
                     // Set Current Level/Prestige Text/Icons
                     statsCurrentLevel.Content = "Level " + stats.mp.level;
@@ -119,7 +119,7 @@ namespace CoD_WWII
                         {
                             var nextPrestige = stats.mp.prestige += 1.0;
                             statsNextLevel.Content = "Prestige " + nextPrestige;
-                            imageNextLevelIcon.Source = GetPrestigeIcon(nextPrestige);
+                            imageNextLevelIcon.Source = GetPrestigeIcon(nextPrestige, 70);
                         }
                         else
                         {

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:local="clr-namespace:WWII_Stats" x:Class="CoD_WWII.MainWindow"
+        xmlns:local="clr-namespace:CoD_WWII" x:Class="CoD_WWII.MainWindow"
         mc:Ignorable="d"
         Title="CoD: WWII Utility (BETA)" Icon="/Resources/Icons/wwii-logo.png" ShowIconOnTitleBar="False"  Height="640" Width="888" BorderThickness="0" GlowBrush="Black" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -35,7 +35,7 @@
 
         <!-- Lifetime/Splitter Stats Header -->
 
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="10,160,0,0" Width="865" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Margin="10,160,0,0" Width="865" Orientation="Horizontal">
             <Label Margin="0,0,0,0" Content="LIFETIME STATS" FontWeight="Bold" FontSize="20px" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="Auto" Height="Auto" VerticalContentAlignment="Top"/>
             <Separator Margin="4,0,0,6" Width="1000" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="6" VerticalContentAlignment="Bottom" VerticalAlignment="Bottom"/>
         </StackPanel>
@@ -263,13 +263,13 @@
 
         <Grid HorizontalAlignment="Left" Width="400" Height="Auto" VerticalAlignment="Top" Margin="10,328,0,0" DockPanel.Dock="Top">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Image Height="340" Width="70" x:Name="imageCurrentLevelIcon">
+                <Image Height="340" Width="70" x:Name="imageCurrentLevelIcon" RenderOptions.BitmapScalingMode="HighQuality">
                     <Image.Source>
                         <BitmapImage DecodePixelWidth="70" UriSource="/Resources/Level/33.jpg"/>
                     </Image.Source>
                 </Image>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality">
                 <Image Height="340" Width="70" x:Name="imageNextLevelIcon">
                     <Image.Source>
                         <BitmapImage DecodePixelWidth="70" UriSource="/Resources/Level/33.jpg"/>
@@ -291,7 +291,7 @@
 
         <!-- Current Level Icon (Big) -->
 
-        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="119,412,0,0" Height="470" Width="190" x:Name="imageCurrentLevelIcon1">
+        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="119,412,0,0" Height="470" Width="190" x:Name="imageCurrentLevelIcon1" RenderOptions.BitmapScalingMode="HighQuality">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="190" UriSource="/Resources/Level/33.jpg"/>
             </Image.Source>
