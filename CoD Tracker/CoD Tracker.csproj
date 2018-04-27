@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{361FBE59-5C05-4682-A918-AF48FE7B205D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CoD_Tracker</RootNamespace>
+    <AssemblyName>CoD Tracker</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CoD_Tracker.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\CTR-white.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.1.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.1\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="StringUtilities.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\IconsNonShared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playstation.png" />
+    <Resource Include="Resources\steam.png" />
+    <Resource Include="Resources\xbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cod-wwii-background-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cod-wwii-background-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cod-wwii-background-3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Level\12.png" />
+    <Resource Include="Resources\Level\15.png" />
+    <Resource Include="Resources\Level\18.png" />
+    <Resource Include="Resources\Level\21.png" />
+    <Resource Include="Resources\Level\24.png" />
+    <Resource Include="Resources\Level\27.png" />
+    <Resource Include="Resources\Level\3.png" />
+    <Resource Include="Resources\Level\30.png" />
+    <Resource Include="Resources\Level\33.png" />
+    <Resource Include="Resources\Level\36.png" />
+    <Resource Include="Resources\Level\39.png" />
+    <Resource Include="Resources\Level\42.png" />
+    <Resource Include="Resources\Level\45.png" />
+    <Resource Include="Resources\Level\48.png" />
+    <Resource Include="Resources\Level\51.png" />
+    <Resource Include="Resources\Level\54.png" />
+    <Resource Include="Resources\Level\55.png" />
+    <Resource Include="Resources\Level\6.png" />
+    <Resource Include="Resources\Level\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Prestige\1.png" />
+    <Resource Include="Resources\Prestige\10.png" />
+    <Resource Include="Resources\Prestige\2.png" />
+    <Resource Include="Resources\Prestige\3.png" />
+    <Resource Include="Resources\Prestige\4.png" />
+    <Resource Include="Resources\Prestige\5.png" />
+    <Resource Include="Resources\Prestige\6.png" />
+    <Resource Include="Resources\Prestige\7.png" />
+    <Resource Include="Resources\Prestige\8.png" />
+    <Resource Include="Resources\Prestige\9.png" />
+    <Resource Include="Resources\Prestige\master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playstation-original.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\steam-original.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\xbox-original.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cod-wwii-text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cod-csharp\COD.csproj">
+      <Project>{a3ddc398-3c4e-46b4-b4e4-aca1124e8f8e}</Project>
+      <Name>COD</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CTR-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CTR-white.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
