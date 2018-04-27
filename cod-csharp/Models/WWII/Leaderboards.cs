@@ -23,14 +23,14 @@ namespace COD.Models.WWII
 
 		public class Entry
 		{
-			public double rank { get; set; }
-			public string username { get; set; }
+            public double rank { get; set; }
+            public string username { get; set; }
 			public double updateTime { get; set; }
 			public double rating { get; set; }
-			public Values values { get; set; }
-		}
+            public Values values { get; set; }
+        }
 
-		public class Data
+        public class Data
 		{
 			public string title { get; set; }
 			public string platform { get; set; }

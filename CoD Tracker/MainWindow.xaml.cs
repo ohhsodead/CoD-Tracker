@@ -721,5 +721,10 @@ namespace CoD_Tracker
         {
             ShowLeaderboardsData();
         }
+
+        private void buttonUpdateStats_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

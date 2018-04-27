@@ -10,7 +10,11 @@
 <br />
 
 ## What is CTR?
-add something here soon
+While the game has been released for quite a while, I wanted to serve the Call of Duty Community with a tracker.
+
+There may be a few issues still but I'll fix those quickly - I wanted to get this out as soon as possible.
+
+> We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Activision, or any of its subsidiaries or its affiliates. The official Call of Duty website can be found at http://www.https://www.callofduty.com. The name “Call of Duty” as well as related names, marks, emblems and images are registered trademarks of Call of Duty.
 
 ## Screenshots
 ### Overview Stats
@@ -21,7 +25,6 @@ add something here soon
 
 ### Leaderboards
 ![Leaderboards](https://github.com/HerbL27/CoD-Tracker/blob/master/Screenshots/leaderboards.png?raw=true)
-
 
 ## Latest Build
 CTR 1.0
@@ -42,8 +45,8 @@ All contributions are welcome just send a pull request. It is recommended to use
 - Nicer header/menu for the top search bar
 - Active profile tab titles
 - Add filters to leadboards (Time & Gamemode)
-- Add previous/next page buttons to leaderboards
-- Leadboards row click event should search/display selected username )or not)
+- Add previous/next page buttons to leaderboards (done)
+- Leadboards row click event should search/display selected username (or not)
 - Compare two users profiles window, maybe side-by-side view
 - Next prestige calculator (maybe using monthly stats to get average time played)
 - Some graphs/charts (time played, kd ratios, etc.)
