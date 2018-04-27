@@ -14,7 +14,7 @@ While the game has been released for quite a while, I wanted to serve the Call o
 
 There may be a few issues still but I'll fix those quickly - I wanted to get this out as soon as possible.
 
-> We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Activision, or any of its subsidiaries or its affiliates. The official Call of Duty website can be found at http://www.https://www.callofduty.com. The name “Call of Duty” as well as related names, marks, emblems and images are registered trademarks of Call of Duty.
+> We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Activision, or any of its subsidiaries or its affiliates. The official Call of Duty website can be found at https://www.callofduty.com. The name “Call of Duty” as well as related names, marks, emblems and images are registered trademarks of Call of Duty.
 
 ## Screenshots
 ### Overview Stats
