@@ -1,7 +1,7 @@
 <h1 align="center">
-  <img src="/CoD WWII/Resources/CTR-black.png" alt="Icon" />
+  <img src="/CoD Tracker/Resources/CTR-black.png" alt="Icon" />
   <br />
-  CTR - CoD Tracker
+  CoD Tracker
 </h1>
 
 <h3 align="center">A simple windows application that utilizes the Call of Duty®: World War II public API to display users stats and leaderboards.</h3>

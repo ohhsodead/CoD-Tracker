@@ -136,9 +136,6 @@
   <data name="steam" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\steam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cod_wwii_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cod-wwii-text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="playstation_original" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playstation-original.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

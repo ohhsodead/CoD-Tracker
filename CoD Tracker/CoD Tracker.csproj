@@ -184,9 +184,6 @@
     <Resource Include="Resources\xbox-original.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\cod-wwii-text.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\cod-csharp\COD.csproj">
       <Project>{a3ddc398-3c4e-46b4-b4e4-aca1124e8f8e}</Project>
       <Name>COD</Name>
