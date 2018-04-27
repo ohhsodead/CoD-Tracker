@@ -198,5 +198,8 @@
   <ItemGroup>
     <Resource Include="Resources\CTR-white.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CTR-black.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

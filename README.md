@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="/CoD WWII/Resources/ctr-black.png" alt="Icon" />
+  <img src="/CoD WWII/Resources/CTR-black.png" alt="Icon" />
   <br />
   CTR - CoD Tracker
 </h1>

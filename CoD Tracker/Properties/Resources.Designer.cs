@@ -103,6 +103,16 @@ namespace CoD_Tracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CTR_black {
+            get {
+                object obj = ResourceManager.GetObject("CTR_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ctr_white {
             get {
                 object obj = ResourceManager.GetObject("ctr_white", resourceCulture);
