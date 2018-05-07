@@ -37,7 +37,7 @@
     <StartupObject>CoD_Tracker.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\CTR-white.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\CTR-Header.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -190,13 +190,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\CTR-white.png" />
+    <Resource Include="Resources\CTR-Header.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\CTR-white.ico" />
+    <None Include="Resources\CTR-Header.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CTR-black.png" />
+    <Resource Include="Resources\cod-wwii-background-4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

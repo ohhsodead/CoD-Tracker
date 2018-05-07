@@ -27,11 +27,12 @@ namespace CoD_Tracker
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+            SelectedTabTitle = TabOverview;
             SelectedPlatform = Platform.PS4;
             selectedLeaderboardsTime = Time.Lifetime;
             selectedLeaderboardsMode = WWII.Gamemode.Career;
@@ -84,7 +85,36 @@ namespace CoD_Tracker
                 }
             }
         }
-        
+
+        private Label selectedTabTitle;
+        public Label SelectedTabTitle
+        {
+            get { return selectedTabTitle; }
+            set
+            {
+                selectedTabTitle = value;
+
+                if (selectedTabTitle == TabOverview)
+                {
+                    TabOverview.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(22, 22, 22));
+                    TabWeekly.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 33, 33));
+                    TabLeaderboards.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 33, 33));
+                }
+                else if (selectedTabTitle == TabWeekly)
+                {
+                    TabOverview.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 33, 33));
+                    TabWeekly.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(22, 22, 22));
+                    TabLeaderboards.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 33, 33));
+                }
+                else if (selectedTabTitle == TabLeaderboards)
+                {
+                    TabOverview.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 33, 33));
+                    TabWeekly.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 33, 33));
+                    TabLeaderboards.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(22, 22, 22));
+                }
+            }
+        }
+
         public static BitmapImage GetPlatformIcon(string platform, bool original)
         {
             string originalText = (original == false ? null : "-original");
@@ -117,118 +147,9 @@ namespace CoD_Tracker
                 {
                     try
                     {
-                        marqueeSearchBox.Visibility = Visibility.Visible;
-
                         selectedUsername = textBoxUsername.Text;
-                        labelUsername.Content = selectedUsername;
 
-                        var usersStats = await Task.Run(() => WWII.GetProfile(SelectedPlatform, selectedUsername));
-
-                        // Dislay Users Stats
-                        statWinPercent.Content = (int)Math.Round((100 * usersStats.mp.lifetime.all.wins) / (usersStats.mp.lifetime.all.wins + usersStats.mp.lifetime.all.losses)) + "%";
-                        statKDRatio.Content = Math.Round(usersStats.mp.lifetime.all.kdRatio, 2);
-                        statAccuracy.Content = usersStats.mp.lifetime.all.accuracy + "%";
-                        statGameScore.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.score));
-                        statTimePlayed.Content = StringUtilities.SecondsToTime((int)usersStats.mp.lifetime.all.timePlayed);
-
-                        // Current Prestige/Level (TODO: add rank text, add prestige text...)
-                        // GetLevelRank(usersStats.mp.level);
-                        statLevel.Content = "LEVEL " + usersStats.mp.level;
-                        imageRank.Source = GetLevelIcon(usersStats.mp.level);
-
-                        // Set Prestige Icon, if user has prestiged
-                        if (usersStats.mp.prestige > 0 && usersStats.mp.prestige < 9)
-                        {
-                            imageRank.Source = GetPrestigeIcon(usersStats.mp.prestige);
-                        }
-                        else if (usersStats.mp.prestige == 10 && usersStats.mp.level >= 55) // Master Prestige
-                        {
-                            imageRank.Source = GetPrestigeIcon(0, true);
-                            statLevel.Content = "MASTER PRESTIGE";
-                        }
-
-                        // Level XP Progress
-                        progressLevelXP.Maximum = (usersStats.mp.levelXpGained + usersStats.mp.levelXpRemainder);
-                        progressLevelXP.Value = usersStats.mp.levelXpGained;
-                        levelCurrentXP.Content = "Current: " + StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.levelXpGained));
-                        levelNeededXP.Content = "Needed: " + StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.levelXpRemainder));
-
-                        // Overview Stats
-                        statKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.kills));
-                        statDeaths.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.deaths));
-                        statHeadshots.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.headshots));
-                        statSuicides.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.suicides));
-                        statWins.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.wins));
-                        statLosses.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.losses));
-                        statWinStreak.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.currentWinStreak));
-                        statGamesPlayed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.matchesPlayed));
-                        statTotalXP.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.totalXp));
-
-                        statPlants.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.plants));
-                        statDefuses.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.defuses));
-                        statConfirmed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.confirmed));
-                        statDenied.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.denied));
-                        statCaptures.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.captures));
-                        statDefends.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.defends));
-                        statDestructions.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.destructions));
-
-                        statBestKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.bestKills));
-                        statBestKillStreak.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.killStreak));
-                        statBestScore.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.bestScore));
-                        statBestAccuracy.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.bestAccuracy));
-                        statBestWinStreak.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.winStreak));
-
-                        statUnlockPoints.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.unlockPoints));
-                        statMoney.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.money));
-                        statPrestigeTokens.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.prestigeShopTokens));
-                        statPoints.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.points));
-
-                        // Weekly Stats
-
-                        statWeeklyKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.kills));
-                        statWeeklyDeaths.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.deaths));
-                        statWeeklyAssists.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.assists));
-                        statWeeklyKDRatio.Content = Math.Round(usersStats.mp.weekly.all.kdRatio, 2);
-                        statWeeklyHeadshots.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.headshots));
-                        statWeeklyWins.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.wins));
-                        statWeeklyLosses.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.losses));
-                        statWeeklyMatchesPlayed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.matchesPlayed));
-                        statWeeklySPM.Content = Math.Round(usersStats.mp.weekly.all.scorePerMinute, 0);
-                        statWeeklyNemesisKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.nemesisKills));
-                        statWeeklyNemesisDeaths.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.nemesisDeaths));
-                        statWeeklyTimePlayed.Content = StringUtilities.SecondsToTime((int)usersStats.mp.weekly.all.timePlayed);
-                        statWeeklyScore.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.score));
-                        statWeeklyTotalXP.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.totalXp));
-
-                        statWeeklyShotsFired.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.shotsFired));
-                        statWeeklyShotsLanded.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.shotsLanded));
-                        statWeeklyShotsMissed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.shotsMissed));
-                        statWeeklyAccuracy.Content = (int)Math.Round((100 * usersStats.mp.weekly.all.shotsLanded) / (usersStats.mp.weekly.all.shotsLanded + usersStats.mp.weekly.all.shotsMissed)) + "%";
-
-                        statWeeklyDivisionXpInfantry.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpInfantry));
-                        statWeeklyDivisionXpAirborne.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpAirborne));
-                        statWeeklyDivisionXpArmored.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpArmored));
-                        statWeeklyDivisionXpMountain.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpMountain));
-                        statWeeklyDivisionXpExpeditionary.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpExpeditionary));
-
-                        // Leaderboards
-                        var usersLeaderboards = await Task.Run(() => WWII.GetLeaderboards(SelectedPlatform, selectedLeaderboardsTime, selectedLeaderboardsMode, selectedUsername));
-
-                        AddRowsToDataGrid(usersLeaderboards.entries);
-                        selectedLeaderboardsPage = usersLeaderboards.page;
-                        selectedLeaderboardsTotalPages = usersLeaderboards.totalPages;
-
-                        if (usersLeaderboards.page == 1)
-                            buttonLeaderboardsPreviousPage.IsEnabled = false;
-                        else
-                            buttonLeaderboardsPreviousPage.IsEnabled = true;
-
-                        if (usersLeaderboards.page == usersLeaderboards.totalPages)
-                            buttonLeaderboardsNextPage.IsEnabled = false;
-                        else
-                            buttonLeaderboardsNextPage.IsEnabled = true;
-
-                        marqueeSearchBox.Visibility = Visibility.Hidden;
+                        ShowUsersProfile();
                     }
                     catch (Exception ex)
                     {
@@ -241,6 +162,159 @@ namespace CoD_Tracker
                     await this.ShowMessageAsync("Oops...", "You must enter a username", MessageDialogStyle.Affirmative);
                 }
             }
+        }
+
+        private async void ShowUsersProfile()
+        {
+            labelUsername.Content = selectedUsername;
+
+            marqueeSearchBox.Visibility = Visibility.Visible;
+
+            var usersStats = await Task.Run(() => WWII.GetProfile(SelectedPlatform, selectedUsername));
+
+            // Dislay Users Stats
+            statWinPercent.Content = (int)Math.Round((100 * usersStats.mp.lifetime.all.wins) / (usersStats.mp.lifetime.all.wins + usersStats.mp.lifetime.all.losses)) + "%";
+            statKDRatio.Content = Math.Round(usersStats.mp.lifetime.all.kdRatio, 2);
+            statAccuracy.Content = usersStats.mp.lifetime.all.accuracy + "%";
+            statGameScore.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.score));
+            statTimePlayed.Content = StringUtilities.SecondsToTime((int)usersStats.mp.lifetime.all.timePlayed);
+
+            // Current Prestige/Level (TODO: add rank text, add prestige text...)
+            // GetLevelRank(usersStats.mp.level);
+            statLevel.Content = "LEVEL " + usersStats.mp.level;
+            imageRank.Source = GetLevelIcon(usersStats.mp.level);
+
+            // Set Prestige Icon, if user has prestiged
+            if (usersStats.mp.prestige > 0 && usersStats.mp.prestige < 9)
+            {
+                imageRank.Source = GetPrestigeIcon(usersStats.mp.prestige);
+            }
+            else if (usersStats.mp.prestige == 10 && usersStats.mp.level >= 55) // Master Prestige
+            {
+                imageRank.Source = GetPrestigeIcon(0, true);
+                statLevel.Content = "MASTER PRESTIGE";
+            }
+
+            // Level XP Progress
+            progressLevelXP.Maximum = (usersStats.mp.levelXpGained + usersStats.mp.levelXpRemainder);
+            progressLevelXP.Value = usersStats.mp.levelXpGained;
+            levelCurrentXP.Content = "Current: " + StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.levelXpGained));
+            levelNeededXP.Content = "Needed: " + StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.levelXpRemainder));
+
+            // Overview Stats
+            statKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.kills));
+            statDeaths.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.deaths));
+            statHeadshots.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.headshots));
+            statSuicides.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.suicides));
+            statWins.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.wins));
+            statLosses.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.losses));
+            statWinStreak.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.currentWinStreak));
+            statGamesPlayed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.matchesPlayed));
+            statTotalXP.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.totalXp));
+
+            statPlants.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.plants));
+            statDefuses.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.defuses));
+            statConfirmed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.confirmed));
+            statDenied.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.denied));
+            statCaptures.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.captures));
+            statDefends.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.defends));
+            statDestructions.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.destructions));
+
+            statBestKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.bestKills));
+            statBestKillStreak.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.killStreak));
+            statBestScore.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.bestScore));
+            statBestAccuracy.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.bestAccuracy));
+            statBestWinStreak.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.winStreak));
+
+            statUnlockPoints.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.unlockPoints));
+            statMoney.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.money));
+            statPrestigeTokens.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.prestigeShopTokens));
+            statPoints.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.lifetime.all.points));
+
+            // Weekly Stats
+
+            statWeeklyKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.kills));
+            statWeeklyDeaths.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.deaths));
+            statWeeklyAssists.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.assists));
+            statWeeklyKDRatio.Content = Math.Round(usersStats.mp.weekly.all.kdRatio, 2);
+            statWeeklyHeadshots.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.headshots));
+            statWeeklyWins.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.wins));
+            statWeeklyLosses.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.losses));
+            statWeeklyMatchesPlayed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.matchesPlayed));
+            statWeeklySPM.Content = Math.Round(usersStats.mp.weekly.all.scorePerMinute, 0);
+            statWeeklyNemesisKills.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.nemesisKills));
+            statWeeklyNemesisDeaths.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.nemesisDeaths));
+            statWeeklyTimePlayed.Content = StringUtilities.SecondsToTime((int)usersStats.mp.weekly.all.timePlayed);
+            statWeeklyScore.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.score));
+            statWeeklyTotalXP.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.totalXp));
+
+            statWeeklyShotsFired.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.shotsFired));
+            statWeeklyShotsLanded.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.shotsLanded));
+            statWeeklyShotsMissed.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.shotsMissed));
+            statWeeklyAccuracy.Content = (int)Math.Round((100 * usersStats.mp.weekly.all.shotsLanded) / (usersStats.mp.weekly.all.shotsLanded + usersStats.mp.weekly.all.shotsMissed)) + "%";
+
+            statWeeklyDivisionXpInfantry.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpInfantry));
+            statWeeklyDivisionXpAirborne.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpAirborne));
+            statWeeklyDivisionXpArmored.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpArmored));
+            statWeeklyDivisionXpMountain.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpMountain));
+            statWeeklyDivisionXpExpeditionary.Content = StringUtilities.GetFormattedNumber(Convert.ToString(usersStats.mp.weekly.all.divisionXpExpeditionary));
+
+            marqueeSearchBox.Visibility = Visibility.Hidden;
+
+            ShowProfileLeaderboards();
+        }
+
+
+        private async void ShowProfileLeaderboards()
+        {
+            marqueeSearchBox.Visibility = Visibility.Visible;
+
+            // Leaderboards
+            var usersLeaderboards = await Task.Run(() => WWII.GetLeaderboards(SelectedPlatform, selectedLeaderboardsTime, selectedLeaderboardsMode, selectedUsername));
+
+            AddRowsToDataGrid(usersLeaderboards.entries);
+            selectedLeaderboardsPage = usersLeaderboards.page;
+            selectedLeaderboardsTotalPages = usersLeaderboards.totalPages;
+            labelLeaderbaordsPageNum.Content = usersLeaderboards.page;
+            labelLeaderbaordsTotalPageNum.Content = usersLeaderboards.totalPages + " /";
+
+            if (usersLeaderboards.page == 1)
+                buttonLeaderboardsPreviousPage.IsEnabled = false;
+            else
+                buttonLeaderboardsPreviousPage.IsEnabled = true;
+
+            if (usersLeaderboards.page == usersLeaderboards.totalPages)
+                buttonLeaderboardsNextPage.IsEnabled = false;
+            else
+                buttonLeaderboardsNextPage.IsEnabled = true;
+
+            marqueeSearchBox.Visibility = Visibility.Hidden;
+        }
+
+        private async void ShowProfileLeaderboardsByPage()
+        {
+            marqueeSearchBox.Visibility = Visibility.Visible;
+
+            // Leaderboards
+            var usersLeaderboards = await Task.Run(() => WWII.GetLeaderboards(SelectedPlatform, selectedLeaderboardsTime, selectedLeaderboardsMode, selectedLeaderboardsPage));
+
+            AddRowsToDataGrid(usersLeaderboards.entries);
+            selectedLeaderboardsPage = usersLeaderboards.page;
+            selectedLeaderboardsTotalPages = usersLeaderboards.totalPages;
+            labelLeaderbaordsPageNum.Content = usersLeaderboards.page;
+            labelLeaderbaordsTotalPageNum.Content = usersLeaderboards.totalPages + " /";
+
+            if (usersLeaderboards.page == 1)
+                buttonLeaderboardsPreviousPage.IsEnabled = false;
+            else
+                buttonLeaderboardsPreviousPage.IsEnabled = true;
+
+            if (usersLeaderboards.page == usersLeaderboards.totalPages)
+                buttonLeaderboardsNextPage.IsEnabled = false;
+            else
+                buttonLeaderboardsNextPage.IsEnabled = true;
+
+            marqueeSearchBox.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -299,6 +373,11 @@ namespace CoD_Tracker
                 GamesPlayed = gamesplayed;
                 TimePlayed = timeplayed;
             }
+        }
+
+        private void buttonUpdateStats_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         public static BitmapImage GetLevelIcon(double level)
@@ -569,6 +648,8 @@ namespace CoD_Tracker
             GridOverview.Visibility = Visibility.Visible;
             GridWeekly.Visibility = Visibility.Collapsed;
             GridLeaderboards.Visibility = Visibility.Collapsed;
+
+            SelectedTabTitle = TabOverview;
         }
 
         private void TabWeekly_MouseDown(object sender, MouseButtonEventArgs e)
@@ -576,6 +657,8 @@ namespace CoD_Tracker
             GridOverview.Visibility = Visibility.Collapsed;
             GridWeekly.Visibility = Visibility.Visible;
             GridLeaderboards.Visibility = Visibility.Collapsed;
+
+            SelectedTabTitle = TabWeekly;
         }
 
         private void TabLeaderboards_MouseDown(object sender, MouseButtonEventArgs e)
@@ -583,146 +666,47 @@ namespace CoD_Tracker
             GridOverview.Visibility = Visibility.Collapsed;
             GridWeekly.Visibility = Visibility.Collapsed;
             GridLeaderboards.Visibility = Visibility.Visible;
+
+            SelectedTabTitle = TabLeaderboards;
         }
 
         // Leaderboards
         private void comboBoxLeaderboardsTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var comboBox = sender as ComboBox;
-            string value = comboBox.SelectedItem as string;
-
-            if (value == "LIFETIME")
+            if (listBoxLeaderboardsTime.SelectedIndex == 0)
             {
                 selectedLeaderboardsTime = Time.Lifetime;
             }
-            else if (value == "WEEKLY")
+            else if (listBoxLeaderboardsTime.SelectedIndex == 1)
             {
                 selectedLeaderboardsTime = Time.Weekly;
             }
-            else if (value == "MONTHLY")
+            else if (listBoxLeaderboardsTime.SelectedIndex == 2)
             {
                 selectedLeaderboardsTime = Time.Monthly;
             }
         }
 
-        private void comboBoxLeaderboardsGamemode_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var comboBox = sender as ComboBox;
-            string value = comboBox.SelectedItem as string;
-
-            if (value == "CAREER")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.Career;
-            }
-            else if (value == "TEAM DEATHMATCH")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.TDM;
-            }
-            else if (value == "FREE FOR ALL")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.FreeForAll;
-            }
-            else if (value == "KILL CONFIRMED")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.KillConfirmed;
-            }
-            else if (value == "CAPTURE THE FLAG")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.CaptureTheFlag;
-            }
-            else if (value == "SEARCH && DESTROY")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.SearchAndDestroy;
-            }
-            else if (value == "DOMINATION")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.Domination;
-            }
-            else if (value == "GRIDIRON")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.Gridiron;
-            }
-            else if (value == "HARDPOINT")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.Hardpoint;
-            }
-            else if (value == "1V1")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.OnevOne;
-            }
-            else if (value == "WAR")
-            {
-                selectedLeaderboardsMode = WWII.Gamemode.War;
-            }
-        }
-
-        private async void buttonLeaderboardsPreviousPage_Click(object sender, RoutedEventArgs e)
+        private void buttonLeaderboardsPreviousPage_Click(object sender, RoutedEventArgs e)
         {
             selectedLeaderboardsPage -= 1;
 
-            var usersLeaderboards = await Task.Run(() => WWII.GetLeaderboards(SelectedPlatform, selectedLeaderboardsTime, selectedLeaderboardsMode, selectedLeaderboardsPage));
-
-            if (usersLeaderboards.page == 1)
-                buttonLeaderboardsPreviousPage.IsEnabled = false;
-            else
-                buttonLeaderboardsPreviousPage.IsEnabled = true;
-
-            if (usersLeaderboards.page == usersLeaderboards.totalPages)
-                buttonLeaderboardsNextPage.IsEnabled = false;
-            else
-                buttonLeaderboardsNextPage.IsEnabled = true;
-
-            AddRowsToDataGrid(usersLeaderboards.entries);
-            selectedLeaderboardsPage = usersLeaderboards.page;
-            selectedLeaderboardsTotalPages = usersLeaderboards.totalPages;
+            ShowProfileLeaderboardsByPage();
         }
 
-        private async void buttonLeaderboardsNextPage_Click(object sender, RoutedEventArgs e)
+        private void buttonLeaderboardsNextPage_Click(object sender, RoutedEventArgs e)
         {
             selectedLeaderboardsPage += 1;
 
-            var usersLeaderboards = await Task.Run(() => WWII.GetLeaderboards(SelectedPlatform, selectedLeaderboardsTime, selectedLeaderboardsMode, selectedLeaderboardsPage));
-
-            if (usersLeaderboards.page == 1)
-                buttonLeaderboardsPreviousPage.IsEnabled = false;
-            else
-                buttonLeaderboardsPreviousPage.IsEnabled = true;
-
-            if (usersLeaderboards.page == usersLeaderboards.totalPages)
-                buttonLeaderboardsNextPage.IsEnabled = false;
-            else
-                buttonLeaderboardsNextPage.IsEnabled = true;
-
-            AddRowsToDataGrid(usersLeaderboards.entries);
-            selectedLeaderboardsPage = usersLeaderboards.page;
-            selectedLeaderboardsTotalPages = usersLeaderboards.totalPages;
+            ShowProfileLeaderboardsByPage();
         }
 
-        private async void ShowLeaderboardsData()
+        private void buttonLeaderboardsUpdate_Click(object sender, RoutedEventArgs e)
         {
-            var usersLeaderboards = await Task.Run(() => WWII.GetLeaderboards(SelectedPlatform, selectedLeaderboardsTime, selectedLeaderboardsMode, selectedLeaderboardsPage));
-
-            if (usersLeaderboards.page == 1)
-                buttonLeaderboardsPreviousPage.IsEnabled = false;
-            else
-                buttonLeaderboardsPreviousPage.IsEnabled = true;
-
-            if (usersLeaderboards.page == usersLeaderboards.totalPages)
-                buttonLeaderboardsNextPage.IsEnabled = false;
-            else
-                buttonLeaderboardsNextPage.IsEnabled = true;
-
-            AddRowsToDataGrid(usersLeaderboards.entries);
-            selectedLeaderboardsPage = usersLeaderboards.page;
-            selectedLeaderboardsTotalPages = usersLeaderboards.totalPages;
+            ShowProfileLeaderboards();
         }
 
-        private void appbar_refresh_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ShowLeaderboardsData();
-        }
-
-        private void buttonUpdateStats_Click(object sender, RoutedEventArgs e)
+        private void buttonTrophies_Click(object sender, RoutedEventArgs e)
         {
 
         }

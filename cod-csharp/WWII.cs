@@ -14,7 +14,7 @@ namespace COD
 			[Description("career")]
 			Career,
 
-			[Description("tdm")]
+			[Description("war")]
 			TDM,
 
 			[Description("dm")]
@@ -41,7 +41,7 @@ namespace COD
 			[Description("1v1")]
 			OnevOne,
 
-			[Description("war")]
+			[Description("raid")]
 			War
 		}
 

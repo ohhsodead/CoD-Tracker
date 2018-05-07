@@ -15,7 +15,7 @@
                 <!-- Icons -->
                 <ResourceDictionary Source="/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <ImageBrush x:Key="codbg" Opacity="0.6" ImageSource="/Resources/cod-wwii-background-2.jpg" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+            <ImageBrush x:Key="codbg" Opacity="0.5" ImageSource="/Resources/cod-wwii-background-4.jpg" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

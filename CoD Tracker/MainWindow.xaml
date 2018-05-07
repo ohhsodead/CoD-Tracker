@@ -4,25 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:CoD_Tracker" x:Class="CoD_Tracker.MainWindow"
+        x:Class="CoD_Tracker.MainWindow"
         mc:Ignorable="d" d:DesignWidth="1160"
-        Title="COD: WWII TRACKER (BETA)" Icon="/Resources/ctr-white.png" WindowState="Maximized" ShowIconOnTitleBar="False" Height="700" Width="1163.759" BorderThickness="0" GlowBrush="Black" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Background="{StaticResource codbg}">
+        Title="COD: WWII TRACKER (BETA)" Icon="/Resources/CTR-Header.png" WindowState="Maximized" ShowIconOnTitleBar="False" Height="700" Width="1163.759" BorderThickness="0" GlowBrush="Black" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Background="{StaticResource codbg}">
 
     <Grid>
 
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" Height="58" Background="#272727" Opacity="0.98">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" Height="64" Background="#272727" Opacity="0.98">
 
             <!-- Icon / Logo -->
-            <Image Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality" Height="Auto" Width="107" Source="/Resources/ctr-white.png"/>
+            <Image Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality" Width="130" Source="/Resources/CTR-Header.png"/>
+            <Label Content="WORLD WAR II" Margin="139,9,0,0" FontSize="14px" Foreground="DarkOrange" FontWeight="SemiBold" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+            <Label Content="COD TRACKER" Margin="139,28,0,0" FontSize="11px" FontWeight="Normal" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
 
             <!-- Platforms / Search Box / Progress Bar -->
-            <Border CornerRadius="2" BorderBrush="#161616" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="40" Margin="130,9,71,9" Opacity="0.90">
+            <Border CornerRadius="2" BorderBrush="#161616" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="48" Margin="260,8,101,8" Opacity="0.90">
                 <Border.Background>
                     <SolidColorBrush Color="#161616" Opacity="0.90"/>
                 </Border.Background>
 
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0" Opacity="0.90">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="0.90">
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Height="Auto" Orientation="Horizontal" Margin="6,0,0,0">
                         <Image Margin="6,0,6,0" Height="22" Width="22" x:Name="imagePlatformPS4" HorizontalAlignment="Left" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality" Cursor="Hand" MouseDown="imagePlatform_Changed">
                             <Image.Style>
@@ -65,21 +66,47 @@
 
                     </StackPanel>
 
-                    <TextBox x:Name="textBoxUsername" Margin="113,0,0,0" TextWrapping="Wrap" Background="Transparent" HorizontalAlignment="Stretch" Controls:TextBoxHelper.Watermark="Look up your stats..." Controls:TextBoxHelper.ClearTextButton="True" KeyDown="textBoxUsername_OnKeyDown" FontSize="16" FontStyle="Normal" FontWeight="Normal" VerticalContentAlignment="Center" BorderThickness="0" Height="Auto" VerticalAlignment="Stretch"/>
+                    <TextBox x:Name="textBoxUsername" Margin="113,0,10,0" TextWrapping="Wrap" Background="Transparent" HorizontalAlignment="Stretch" Controls:TextBoxHelper.Watermark="Look up your stats..." Controls:TextBoxHelper.ClearTextButton="True" KeyDown="textBoxUsername_OnKeyDown" FontSize="16" FontStyle="Normal" FontWeight="Normal" VerticalContentAlignment="Center" BorderThickness="0" Height="Auto" VerticalAlignment="Stretch"/>
 
                 </Grid>
             </Border>
 
             <Controls:MetroProgressBar Orientation="Horizontal" x:Name="marqueeSearchBox" HorizontalAlignment="Stretch" IsIndeterminate="True" Visibility="Hidden" VerticalAlignment="Bottom" Height="4" Width="Auto" Margin="0,0,0,2"/>
+
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Height="19" Width="19" Margin="0,20,16,20" Cursor="Hand" x:Name="buttonInformation"  Click="buttonTrophies_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Height="19" Width="19">
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_information_circle}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Rectangle HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,48,20" Height="20" Width="1" Stroke="Gray" />
+
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Height="19" Width="20" Margin="0,20,62,20" Cursor="Hand" x:Name="buttonTrophies"  Click="buttonTrophies_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Height="19" Width="20">
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_twitter_bird}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
 
 
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0,58,0,30" FocusVisualStyle="{x:Null}" >
-            <Grid Margin="0,20,0,30">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0,64,0,30" FocusVisualStyle="{x:Null}" Padding="14,0,14,0">
+            <Grid Margin="0,14,0,30">
 
                 <!-- Platform / Username -->
 
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="46" Margin="24,0,24,0" Background="#161616" Opacity="0.90">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="46" Margin="0,0,0,0" Background="#161616" Opacity="0.90">
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,0,159,0">
                         <Image Margin="10,0,0,0" Height="30" Width="30" x:Name="imageSelectedPlatform" HorizontalAlignment="Left" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality">
                             <Image.Source>
@@ -90,12 +117,33 @@
                         <Label Content="/ CALL OF DUTY: WORLD WAR II" FontFamily="Roboto" Margin="0,6,0,0" FontSize="15.6px" FontWeight="Normal" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <Button x:Name="buttonUpdateStats" Margin="0,0,10,0" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="90" Height="26" Padding="0,0,0,1" Click="buttonUpdateStats_Click" Content="Update Stats"/>
+                    <Button x:Name="buttonUpdateStats" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Height="26" Margin="0,0,10,0" Cursor="Hand" Padding="0" Click="buttonUpdateStats_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,1,0,0">
+                            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center" Width="12" Height="14" Margin="6,0,0,0">
+                                <Rectangle.Fill>
+                                    <VisualBrush Visual="{StaticResource appbar_refresh}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Label Content="Update" FontSize="11.4px" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2,-2,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="buttonCompareStats" HorizontalAlignment="Right" VerticalAlignment="Center" Width="90" Height="26" Margin="0,0,100,0" Cursor="Hand" Padding="0" Click="buttonUpdateStats_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,1,0,0">
+                            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center" Width="12" Height="14" Margin="6,0,0,0">
+                                <Rectangle.Fill>
+                                    <VisualBrush Visual="{StaticResource appbar_arrow_right_left}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Label Content="Compare" FontSize="11.4px" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2,-2,0,0"/>
+                        </StackPanel>
+                    </Button>
+
                 </Grid>
 
                 <!-- Navigation -->
 
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="44" Margin="24,46,24,0" Background="#212121" Opacity="0.90">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="44" Margin="0,46,0,0" Background="#212121" Opacity="0.90">
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,0,0,0">
                         <Label x:Name="TabOverview" Content="Overview" FontSize="14px" FontWeight="Normal" Width="90" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand" MouseDown="TabOverview_MouseDown">
                             <Label.Style>
@@ -136,7 +184,7 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Margin="24,100,24,0" Visibility="Collapsed" x:Name="GridOverview">
+                <Grid Margin="0,100,0,0" Visibility="Collapsed" x:Name="GridOverview">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
@@ -160,38 +208,37 @@
                             <Label Content="LEVEL 0" Foreground="Orange" FontSize="18.2px" FontWeight="Normal" Width="200" Height="Auto" x:Name="statLevel" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                         </StackPanel>
 
-                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Margin="0,26,0,0">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Margin="240,26,40,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="1">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="0">
                                 <Label Content="Win Percent" Foreground="DarkOrange" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <Label Content="0" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" x:Name="statWinPercent" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="2">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="1">
                                 <Label Content="K/D Ratio" Foreground="DarkOrange" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <Label Content="0" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" x:Name="statKDRatio" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="3">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="2">
                                 <Label Content="Accuracy" Foreground="DarkOrange" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <Label Content="0" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" x:Name="statAccuracy" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="4">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="3">
                                 <Label Content="Game Score" Foreground="DarkOrange" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <Label Content="0" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" x:Name="statGameScore" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="5">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Grid.Column="4">
                                 <Label Content="Time Played" Foreground="DarkOrange" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <Label Content="0" FontSize="18.2px" FontWeight="Normal" Width="Auto" Height="Auto" x:Name="statTimePlayed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4"/>
                             </StackPanel>
                         </Grid>
 
-                        <Controls:MetroProgressBar Background="#4d4d4d" x:Name="progressLevelXP" HorizontalAlignment="Stretch" Height="10" VerticalAlignment="Top" Width="Auto" Margin="240,114,40,0" Value="0"/>
+                        <Controls:MetroProgressBar Background="#6e420e" x:Name="progressLevelXP" HorizontalAlignment="Stretch" Height="10" VerticalAlignment="Top" Width="Auto" Margin="240,114,40,0" Value="0"/>
 
                         <Grid HorizontalAlignment="Stretch" Width="Auto" Height="Auto" VerticalAlignment="Top" Margin="240,128,40,0">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -393,7 +440,7 @@
 
                 <!-- Weekly Stats -->
 
-                <Grid Margin="24,90,24,0" Visibility="Collapsed" x:Name="GridWeekly">
+                <Grid Margin="0,90,0,0" Visibility="Collapsed" x:Name="GridWeekly">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
@@ -571,32 +618,49 @@
                     </Grid>
                 </Grid>
 
+
                 <!-- Leaderboards -->
 
-                <Grid Margin="24,90,24,0" Visibility="Visible" x:Name="GridLeaderboards">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Height="36" Background="#161616" Margin="0,10,0,0">
+                <Grid Margin="0,90,0,0" Visibility="Visible" x:Name="GridLeaderboards">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Height="40" Background="#161616" Margin="0,10,0,0">
+                        <Label Content="Time:" FontSize="15px" FontWeight="SemiBold" VerticalAlignment="Center" Margin="8,0,-2,0"/>
                         <ComboBox x:Name="listBoxLeaderboardsTime" SelectedIndex="0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="10,0,0,0" SelectionChanged="comboBoxLeaderboardsTime_SelectionChanged">
                             <ComboBoxItem Content="LIFETIME"/>
                             <ComboBoxItem Content="MONTHLY"/>
                             <ComboBoxItem Content="WEEKLY"/>
                         </ComboBox>
-                        <Label Content="/" FontSize="16px" FontWeight="SemiBold" VerticalAlignment="Center" Margin="2,-2,-8,0"/>
-                        <ComboBox x:Name="listBoxLeaderboardsGamemode" SelectedIndex="0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="10,0,0,0" SelectionChanged="comboBoxLeaderboardsGamemode_SelectionChanged">
-                            <ComboBoxItem Content="CAREER"/>
-                            <ComboBoxItem Content="TEAM DEATHMATCH"/>
-                            <ComboBoxItem Content="FREE FOR ALL"/>
-                            <ComboBoxItem Content="KILL CONFIRMED"/>
-                            <ComboBoxItem Content="CAPTURE THE FLAG"/>
-                            <ComboBoxItem Content="SEARCH &amp; DESTROY"/>
-                            <ComboBoxItem Content="DOMINATION"/>
-                            <ComboBoxItem Content="GRIDIRON"/>
-                            <ComboBoxItem Content="HARDPOINT"/>
-                            <ComboBoxItem Content="1V1"/>
-                            <ComboBoxItem Content="WAR"/>
-                        </ComboBox>
                     </StackPanel>
 
-                    <DataGrid x:Name="DataGridLeaderboards" Opacity="0.9" FontSize="15px" CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Width="Auto" Margin="0,46,0,40" AutoGenerateColumns="False">
+                    <Label Content="Leaderboards by Score" FontSize="17px" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+
+                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Width="129" Height="30" Background="#161616" Margin="0,14,176,0">
+                        <Label Content="0 /" FontSize="16.5px" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,0" x:Name="labelLeaderbaordsTotalPageNum"/>
+                        <Label Content="0" FontSize="13px" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-4,-4,0" x:Name="labelLeaderbaordsPageNum"/>
+                    </StackPanel>
+
+                    <Button x:Name="buttonLeaderboardsPreviousPage" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,17,78,0" Width="88" Height="22" Padding="0" Click="buttonLeaderboardsPreviousPage_Click" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,1,0,0">
+                            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center" Width="12" Height="10" Margin="4,0,0,0">
+                                <Rectangle.Fill>
+                                    <VisualBrush Visual="{StaticResource appbar_arrow_left}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Label Content="Previous" FontSize="11.4px" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2,-2,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="buttonLeaderboardsNextPage" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,17,5,0" Width="68" Height="22" Padding="0" Click="buttonLeaderboardsNextPage_Click" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,1,0,0">
+                            <Label Content="Next" FontSize="11.4px" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="-4,-2,0,0"/>
+                            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center" Width="12" Height="10" Margin="2,0,0,0">
+                                <Rectangle.Fill>
+                                    <VisualBrush Visual="{StaticResource appbar_arrow_right}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+
+                    <DataGrid x:Name="DataGridLeaderboards" SelectionMode="Single" Opacity="0.9" FontSize="14px" CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Width="Auto" Margin="0,50,0,6" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="POSITION" Binding="{Binding Position}" Width="140"/>
                             <DataGridTextColumn Header="LEVEL" Binding="{Binding Level}" Width="70"/>
@@ -614,17 +678,10 @@
                             </Style>
                             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#3f3f3f"/>
                         </DataGrid.Resources>
-
                     </DataGrid>
-
-                    <Button x:Name="buttonLeaderboardsPreviousPage" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="104" Height="26" Padding="0,0,0,1" Click="buttonLeaderboardsPreviousPage_Click" Content="Previous Page" IsEnabled="False"/>
-                    <Button x:Name="buttonLeaderboardsNextPage" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="82" Height="26" Padding="0,0,0,1" Click="buttonLeaderboardsNextPage_Click" Content="Next Page" IsEnabled="False"/>
                 </Grid>
-
             </Grid>
-
         </ScrollViewer>
-
 
         <!-- Footer / Status Bar -->
 

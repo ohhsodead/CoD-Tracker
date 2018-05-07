@@ -93,9 +93,9 @@ namespace CoD_Tracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CTR_black {
+        internal static System.Drawing.Bitmap cod_wwii_background_4 {
             get {
-                object obj = ResourceManager.GetObject("CTR_black", resourceCulture);
+                object obj = ResourceManager.GetObject("cod_wwii_background_4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,10 +103,20 @@ namespace CoD_Tracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ctr_white {
+        internal static System.Drawing.Bitmap CTR_Header {
             get {
-                object obj = ResourceManager.GetObject("ctr_white", resourceCulture);
+                object obj = ResourceManager.GetObject("CTR_Header", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon CTR_Header1 {
+            get {
+                object obj = ResourceManager.GetObject("CTR_Header1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

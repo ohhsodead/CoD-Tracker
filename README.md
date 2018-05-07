@@ -14,8 +14,6 @@ While the game has been released for quite a while, I wanted to serve the Call o
 
 There may be a few issues still but I'll fix those quickly - I wanted to get this out as soon as possible.
 
-> We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Activision, or any of its subsidiaries or its affiliates. The official Call of Duty website can be found at https://www.callofduty.com. The name “Call of Duty” as well as related names, marks, emblems and images are registered trademarks of Call of Duty.
-
 ## Screenshots
 ### Overview Stats
 ![Overview Stats](https://github.com/HerbL27/CoD-Tracker/blob/master/Screenshots/overview.png?raw=true)
@@ -27,21 +25,24 @@ There may be a few issues still but I'll fix those quickly - I wanted to get thi
 ![Leaderboards](https://github.com/HerbL27/CoD-Tracker/blob/master/Screenshots/leaderboards.png?raw=true)
 
 ## Latest Build
-CTR 1.0
+CTR 1.0 - unreleased
 
 ## Supported Systems
 * Windows XP and above (Windows XP, Vista, 7, 8, 8.1, 10) using .NET 4.7.1 [Download here](https://www.microsoft.com/net/download/dotnet-framework-runtime/net471).
 
 ## Feedback
-Please supply as much information about the problem you are experiencing as possible.
+Please supply as much information about the problem/feature as possible.
 
 ## Contributing
 All contributions are welcome just send a pull request. It is recommended to use Visual Studio 2017 when making code changes in this project.
 
+## Disclaimer
+>  Call of Duty Tracker is an unofficial fan application. We are not affiliated with Activision. Activision owns everything Call of Duty related. All other trademarks and trade names are property of their respective owners.
+
 ## To-do's / Ideas:
 - Add global leaderboards window
 - Users leadboards tab (in progress)
-- Get percentage of users stats using leaderboards
+- Get percentage of users stats using leaderboards (percentiles)
 - Nicer header/menu for the top search bar
 - Active profile tab titles
 - Add filters to leadboards (Time & Gamemode)
