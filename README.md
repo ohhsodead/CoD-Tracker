@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="/CoD Tracker/Resources/CTR-black.png" alt="Icon" />
+  <img src="/CoD Tracker/Resources/CTR-Header.png" alt="Icon" />
   <br />
   CoD Tracker
 </h1>
